@@ -1,10 +1,10 @@
-# KrakenD oauth2 client credentials
+# KrakenD oauth2 Google credentials
 
 A http client for the [KrakenD](https://github.com/devopsfaith/krakend) framework supporting the oauth2 client credentials workflow.
 
 ## How to use it?
 
-This package exposes single factory capable to create a instances of the `proxy.HTTPClientFactory` interface embedding a http client supporting the oauth2 client credentials workflow
+This package exposes single factory capable to create a instances of the `proxy.HTTPClientFactory` interface embedding a http client supporting the oauth2 Google credentials workflow
 
 	import 	(
 		"context"
