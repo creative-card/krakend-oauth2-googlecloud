@@ -1,4 +1,4 @@
-module github.com/creative-card/krakend-oauth2-googlecloud/v1
+module github.com/creative-card/krakend-oauth2-googlecloud/v2
 
 go 1.17
 
