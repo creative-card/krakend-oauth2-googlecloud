@@ -5,8 +5,6 @@ import (
 	"net/http"
 	"strings"
 
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google"
 	"golang.org/x/oauth2/jwt"
 
 	"github.com/luraproject/lura/v2/config"
@@ -28,7 +26,6 @@ func NewHTTPClient(cfg *config.Backend) client.HTTPClientFactory {
 		PrivateKey:     []byte(oauth.PrivateKey),
 		TokenURL:       oauth.TokenURL,
 		Scopes:         strings.Split(oauth.Scopes, ","),
-		EndpointParams: oauth.EndpointParams,
 	}
 	cli := c.Client(context.Background())
 	return func(_ context.Context) *http.Client {
@@ -43,7 +40,6 @@ type Config struct {
 	PrivateKey     string
 	TokenURL       string
 	Scopes         string
-	EndpointParams map[string][]string
 }
 
 // ZeroCfg is the zero value for the Config struct
@@ -65,26 +61,14 @@ func configGetter(e config.ExtraConfig) interface{} {
 	if v, ok := tmp["email"]; ok {
 		cfg.Email = v.(string)
 	}
-	if v, ok := tmp["client_secret"]; ok {
-		cfg.ClientSecret = v.(string)
-	}
 	if v, ok := tmp["private_key"]; ok {
 		cfg.PrivateKey = v.(string)
 	}
+	if v, ok := tmp["token_url"]; ok {
+		cfg.TokenURL = v.(string)
+	}
 	if v, ok := tmp["scopes"]; ok {
 		cfg.Scopes = v.(string)
-	}
-	if v, ok := tmp["endpoint_params"]; ok {
-		tmp = v.(map[string]interface{})
-		res := map[string][]string{}
-		for k, vs := range tmp {
-			values := []string{}
-			for _, v := range vs.([]interface{}) {
-				values = append(values, v.(string))
-			}
-			res[k] = values
-		}
-		cfg.EndpointParams = res
 	}
 	return cfg
 }
