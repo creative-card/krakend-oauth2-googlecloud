@@ -12,7 +12,7 @@ import (
 )
 
 // Namespace is the key to use to store and access the custom config data
-const Namespace = "github.com/creative-card/krakend-ouath2-googlecloud"
+const Namespace = "github.com/creative-card/krakend-oauth2-googlecloud"
 
 // NewHTTPClient creates a HTTPClientFactory with an http client configured for dealing
 // with all the logic related to the oauth2 Google credentials grant
